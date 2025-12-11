@@ -28,6 +28,15 @@ public class Home extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        HomeEventListener listener = new HomeEventListener(clip);
+        GLCanvas glcanvas = new GLCanvas();
+        glcanvas.addKeyListener(listener);
+        glcanvas.addGLEventListener(listener);
+        glcanvas.addMouseListener(listener);
+        glcanvas.addMouseMotionListener(listener);
+    }
+}
+        class HomeEventListener implements GLEventListener, MouseMotionListener, MouseListener, KeyListener {
 
         getContentPane().add(glcanvas, BorderLayout.CENTER);//m
 
@@ -55,4 +64,4 @@ class HomeEventListener implements GLEventListener, MouseMotionListener, MouseLi
     final TextureReader.Texture texture[] = new TextureReader.Texture[textureNames.length];
     final int textures[] = new int[textureNames.length];
     final int orthoX = 600, orthoY = 350;
-    int windowWidth = 2 * orthoX, windowHight = 2 * orthoY, flag[] = { 0 };
+    int windowWidth = 2 * orthoX, windowHight = 2 * orthoY, flag[] = {0};
