@@ -206,7 +206,7 @@ import com.sun.opengl.util.GLUT;
 
         public void checkWinner() {
 
-            final int TIME_LIMIT = 10;
+            final int TIME_LIMIT = 30;
 
             if (timer.getSeconds() < TIME_LIMIT)
                 return;

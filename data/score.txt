@@ -1,2 +1,4 @@
 basmala 100
 shahd 0
+basmall 100
+basmall 100
