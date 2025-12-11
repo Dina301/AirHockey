@@ -92,6 +92,9 @@ public class Home extends JFrame {
 
             public HomeEventListener(Clip clip) {
                 this.clip = clip;
+                for (int i = 0; i < textureNames.length; i++) {
+                    System.out.println(i + " -> " + textureNames[i]);
+                }
             }
             @Override
             public void init(GLAutoDrawable arg0) {
@@ -468,28 +471,28 @@ public class Home extends JFrame {
                 draw(44, 260, -200);
 
                 // exit button
-                draw(56, -550, 300, 50, 50);
+                draw(55, -550, 300, 50, 50);
                 // music button
                 if (clip.isActive()) {
-                    draw(59, 550, 300, 50, 50);
+                    draw(57, 550, 300, 50, 50);
                 } else {
-                    draw(60, 550, 300, 50, 50);
+                    draw(58, 550, 300, 50, 50);
                 }
 
                 if (mouse[0] > -390 && mouse[0] < -130) {
                     if (mouse[1] > -100 && mouse[1] < 0) {
-                        draw(46, -260, -50);
+                        draw(45, -260, -50);
                     }
                     if (mouse[1] > -250 && mouse[1] < -150) {
-                        draw(47, -260, -200);
+                        draw(46, -260, -200);
                     }
                 }
                 else if (mouse[0] > 130 && mouse[0] < 390) {
                     if (mouse[1] > -100 && mouse[1] < 0) {
-                        draw(48, 260, -50);
+                        draw(47, 260, -50);
                     }
                     if (mouse[1] > -250 && mouse[1] < -150) {
-                        draw(49, 260, -200);
+                        draw(48, 260, -200);
                     }
                 }
 

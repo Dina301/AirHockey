@@ -225,9 +225,9 @@ import com.sun.opengl.util.GLUT;
 
             //tie
             tieWindowVisible = true;
-            draw(textures[65], 0, 0, 350, 300);
+            draw(textures[63], 0, 0, 350, 300);
             if (winnerIndex == -1) {
-                draw(textures[66],0,130,200,60);
+                draw(textures[64],0,130,200,60);
                 drawResultButtons();
             }
             //
@@ -242,14 +242,14 @@ import com.sun.opengl.util.GLUT;
                     drawText(player2+" wins",-30,110);
             } else {
                 if (winnerIndex == -1) {
-                    draw(textures[66],0,130,200,60);
+                    draw(textures[64],0,130,200,60);
                     drawResultButtons();
                 }
-                // مود 1 لاعب: لاعب ضد AI
+
                 else if (winnerIndex == 0) {
-                    draw(textures[63], 0, 130, 200, 60);//sign you lost
+                    draw(textures[61], 0, 130, 200, 60);//sign you lost
                 } else {
-                    draw(textures[64], 0, 130, 200, 60);//sign you win
+                    draw(textures[62], 0, 130, 200, 60);//sign you win
                 }
 
                 drawText(winnerText, x, 80);
@@ -296,9 +296,9 @@ import com.sun.opengl.util.GLUT;
             }
         }//sh
         private void drawResultButtons() {
-            // عدّلي 50 و 51 لو الإندكسات مختلفة
-            draw(textures[61], 0, 10, 200, 60);    // زرار Play Again
-            draw(textures[62], 0, -50, 200, 60);   // زرار Menu / Back
+
+            draw(textures[59], 0, 10, 200, 60);    //Play Again
+            draw(textures[60], 0, -50, 200, 60); // Menu / Back
         }
         public void reset() {
             super.x = 0;
