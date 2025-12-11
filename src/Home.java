@@ -135,14 +135,14 @@ public class Home extends JFrame {
                 }
                 //
             }  @Override
-            public void display(GLAutoDrawable arg0) {
+            public void display(GLAutoDrawable arg0) {//m
                 // Clear the screen
                 gl.glClear(GL.GL_COLOR_BUFFER_BIT);
 
                 // displaying the pages based on flag value and button clicked
                 transfer();
             }
-            private void drawBackGround() {
+            private void drawBackGround() {//m
                 draw(40, 0, 0, 1200, 700);
             }
             private void draw(int index, double x, double y, double width, double height) {
