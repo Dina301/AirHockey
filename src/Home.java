@@ -104,4 +104,94 @@ public class Home extends JFrame {
             public void reshape(GLAutoDrawable drawable, int x, int y, int width, int high) {
 
             }
+            public void mousePressed(MouseEvent e) {
+                windowHight = e.getComponent().getHeight();
+                windowWidth = e.getComponent().getWidth();
+                mouse[0] = (int) convertX(e.getX()); // set the mouse position
+                mouse[1] = (int) convertY(e.getY()); // set the mouse position
+                mouseClicked[0] = true; // set the mouse clicked
+
+                if (flag[0] == 0) {
+                    if (mouse[0] > -390 && mouse[0] < -130) {
+                        if (mouse[1] > -100 && mouse[1] < 0) {
+
+
+                            playSound("Assets\\sound\\LetsGo.wav");
+                        }
+                        if (mouse[1] > -250 && mouse[1] < -150) {
+
+
+                            playSound("Assets\\sound\\LetsGo.wav");
+                        }
+                    }
+                    else if (mouse[0] > 130 && mouse[0] < 390) {
+                        if (mouse[1] > -100 && mouse[1] < 0) {
+                            flag[0] = 3;
+                            playSound("Assets\\sound\\letsGo.wav");
+                        }
+                        if (mouse[1] > -250 && mouse[1] < -150) {
+                            flag[0] = 4;
+                            playSound("Assets\\sound\\letsGo.wav");
+                        }
+                    }
+                    if (mouse[1] > 275 && mouse[1] < 325) {
+
+                        // Music toggle button
+                        if (mouse[0] > 525 && mouse[0] < 575) {
+                            // control music when click (music toggle)
+                            if(clip.isActive()){
+                                clip.stop();
+                            } else {
+                                clip.start();
+                            }
+                        }
+
+                        if (mouse[0] < -525 && mouse[0] > -575) {
+                            System.exit(0);
+                        }
+                    }
+
+                }
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {//r
+                windowHight = e.getComponent().getHeight();
+                windowWidth = e.getComponent().getWidth();
+
+                mouseClicked[0] = false; // set the mouse clicked
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {//r
+                windowHight = e.getComponent().getHeight();
+                windowWidth = e.getComponent().getWidth();
+
+                mouse[0] = (int) convertX(e.getX()); // set the mouse position
+                mouse[1] = (int) convertY(e.getY()); // set the mouse position
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {//r
+                windowHight = e.getComponent().getHeight();
+                windowWidth = e.getComponent().getWidth();
+
+                mouse[0] = (int) convertX(e.getX()); // set the mouse position
+                mouse[1] = (int) convertY(e.getY()); // set the mouse position
+            }
+            public void mouseClicked(MouseEvent e) {//r
+                windowHight = e.getComponent().getHeight();
+                windowWidth = e.getComponent().getWidth();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                windowHight = e.getComponent().getHeight();
+                windowWidth = e.getComponent().getWidth();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                windowHight = e.getComponent().getHeight();
+                windowWidth = e.getComponent().getWidth();
+            }
         }
