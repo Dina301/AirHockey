@@ -9,7 +9,7 @@ import com.sun.opengl.util.GLUT;
     import javax.media.opengl .*;
     import java.io .*;
     import java.util.Scanner;
-    public class Ball extends GameObjects {//b
+    public class Ball extends GameObjects {
         public double dx = 0, dy = 0;
         public boolean move = true;
         private Hand handRight;
@@ -28,7 +28,7 @@ import com.sun.opengl.util.GLUT;
 
         public Ball(int[] textures, int x, int y, Hand handRight, Hand handLeft, String[] playerName, Timer timer,
                     GL gl) {
-            super(textures[38], x, y, gl);//r
+            super(textures[38], x, y, gl);
             this.textures = textures;
             this.handRight = handRight;
             this.handLeft = handLeft;
@@ -38,7 +38,7 @@ import com.sun.opengl.util.GLUT;
             this.playerName = playerName;
         }
 
-        public void draw() {//b
+        public void draw() {
             super.draw();
             checkCollide();
             move();
@@ -93,7 +93,7 @@ import com.sun.opengl.util.GLUT;
             if (this.y < -280)
                 this.y = -280;
         }
-        private void checkCollide() {//b
+        private void checkCollide() {
             if ((super.x >= 530 || super.x <= -530)) {
                 if (y >= 100 || y <= -100) {
                     if (left_wallFlag) {
@@ -204,9 +204,9 @@ import com.sun.opengl.util.GLUT;
                 flag = true;
         }
 
-        public void checkWinner() {//b
+        public void checkWinner() {
 
-            final int TIME_LIMIT = 10; // 60 ثانية
+            final int TIME_LIMIT = 10;
 
             if (timer.getSeconds() < TIME_LIMIT)
                 return;
@@ -218,9 +218,9 @@ import com.sun.opengl.util.GLUT;
             int winnerIndex = -1;
 
             if (handLeft.score > handRight.score) {
-                winnerIndex = 0; // handLeft فاز
+                winnerIndex = 0;
             } else if (handRight.score > handLeft.score) {
-                winnerIndex = 1; // handRight فاز
+                winnerIndex = 1;
             }
 
             //tie
@@ -231,7 +231,7 @@ import com.sun.opengl.util.GLUT;
                 drawResultButtons();
             }
             //
-            int x = winnerIndex == 0 ? -120 : 40;  // عدلي الأرقام حسب مكانك
+            int x = winnerIndex == 0 ? -120 : 40;
 
             //
             String winnerText ="";
@@ -245,7 +245,7 @@ import com.sun.opengl.util.GLUT;
                     draw(textures[66],0,130,200,60);
                     drawResultButtons();
                 }
-                // مود 1 لاعب: لاعب ضد AI
+
                 else if (winnerIndex == 0) {
                     draw(textures[63], 0, 130, 200, 60);//sign you lost
                 } else {
@@ -258,10 +258,10 @@ import com.sun.opengl.util.GLUT;
             // نفس الزرارين بتوع التعادل
             drawResultButtons();
 
-            if (!handLeft.AI)      // 2-Players → ما نحفظش
+            if (!handLeft.AI)
                 return;
 
-            if (scoreAdded)        // لو حفظنا قبل كده ما نكررش
+            if (scoreAdded)
                 return;
 
             try {
@@ -296,9 +296,8 @@ import com.sun.opengl.util.GLUT;
             }
         }//sh
         private void drawResultButtons() {
-            // عدّلي 50 و 51 لو الإندكسات مختلفة
-            draw(textures[61], 0, 10, 200, 60);    // زرار Play Again
-            draw(textures[62], 0, -50, 200, 60);   // زرار Menu / Back
+            draw(textures[61], 0, 10, 200, 60);
+            draw(textures[62], 0, -50, 200, 60);
         }
         public void reset() {
             super.x = 0;
