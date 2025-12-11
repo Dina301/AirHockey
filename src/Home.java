@@ -8,11 +8,10 @@ import Texture.TextureReader;
 
 // java packages
 import java.io.*;
-import java.util.*;
 import javax.sound.sampled.*;
 
 // our own packages
-import Pages.*;
+
 
 public class Home extends JFrame {
     AudioInputStream audioStream;
@@ -51,7 +50,7 @@ public class Home extends JFrame {
 
     }
 }
-        class HomeEventListener implements GLEventListener, MouseMotionListener, MouseListener, KeyListener {
+ class HomeEventListener implements GLEventListener, MouseMotionListener, MouseListener, KeyListener {
 
 
     final static String ASSETS_PATH = "Assets\\Sprites";
