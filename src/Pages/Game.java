@@ -154,11 +154,20 @@ public class Game {
         handLeft.reset();
         handRight.reset();
         ball.reset();
+        if (isMultiplayer) {
+            handLeft.AI = false;
+            handRight.AI = false;
+        }
     }
 
     public void start() {
+        if (isMultiplayer) {
+            handLeft.AI = false;
+            handRight.AI = false;
+        }
         ball.move = true;
         timer.start();
+
     }
 
     public void startTwoPlayers(String p1, String p2) {
