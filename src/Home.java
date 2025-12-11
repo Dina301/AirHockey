@@ -59,7 +59,7 @@ public class Home extends JFrame {
     final TextureReader.Texture texture[] = new TextureReader.Texture[textureNames.length];
     final int textures[] = new int[textureNames.length];
     final int orthoX = 600, orthoY = 350;
-    int windowWidth = 2 * orthoX, windowHeight = 2 * orthoY, flag[] = {0};
+    int windowWidth = 2 * orthoX, windowHight = 2 * orthoY, flag[] = {0};
 
             GL gl; // global gl drawable to use in the class
             int[] mouse = new int[2]; // tracking mouse position
@@ -196,5 +196,12 @@ public class Home extends JFrame {
             public void mouseExited(MouseEvent e) {
                 windowHight = e.getComponent().getHeight();
                 windowWidth = e.getComponent().getWidth();
+            }
+            private double convertX(double x) {
+                return x * (2 * orthoX) / windowWidth - orthoX;
+            }
+
+            private double convertY(double y) {
+                return orthoY - ((2f * orthoY) / windowHight * y);
             }
         }

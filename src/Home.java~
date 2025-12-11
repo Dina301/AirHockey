@@ -59,9 +59,11 @@ public class Home extends JFrame {
     final TextureReader.Texture texture[] = new TextureReader.Texture[textureNames.length];
     final int textures[] = new int[textureNames.length];
     final int orthoX = 600, orthoY = 350;
-    int windowWidth = 2 * orthoX, windowHeight = 2 * orthoY, flag[] = {0};
+    int windowWidth = 2 * orthoX, windowHight = 2 * orthoY, flag[] = {0};
 
             GL gl; // global gl drawable to use in the class
+            int[] mouse = new int[2]; // tracking mouse position
+            boolean[] mouseClicked = { false }; // tracking mouseClicked
             Clip clip;
 
             public HomeEventListener(Clip clip) {
@@ -155,7 +157,7 @@ public class Home extends JFrame {
                 }
             }
             @Override
-            public void mouseReleased(MouseEvent e) {//r
+            public void mouseReleased(MouseEvent e) {
                 windowHight = e.getComponent().getHeight();
                 windowWidth = e.getComponent().getWidth();
 
@@ -163,7 +165,7 @@ public class Home extends JFrame {
             }
 
             @Override
-            public void mouseDragged(MouseEvent e) {//r
+            public void mouseDragged(MouseEvent e) {
                 windowHight = e.getComponent().getHeight();
                 windowWidth = e.getComponent().getWidth();
 
@@ -172,14 +174,14 @@ public class Home extends JFrame {
             }
 
             @Override
-            public void mouseMoved(MouseEvent e) {//r
+            public void mouseMoved(MouseEvent e) {
                 windowHight = e.getComponent().getHeight();
                 windowWidth = e.getComponent().getWidth();
 
                 mouse[0] = (int) convertX(e.getX()); // set the mouse position
                 mouse[1] = (int) convertY(e.getY()); // set the mouse position
             }
-            public void mouseClicked(MouseEvent e) {//r
+            public void mouseClicked(MouseEvent e) {
                 windowHight = e.getComponent().getHeight();
                 windowWidth = e.getComponent().getWidth();
             }
