@@ -193,12 +193,18 @@ public class Home extends JFrame {
                 if (flag[0] == 0) {
                     if (mouse[0] > -390 && mouse[0] < -130) {
                         if (mouse[1] > -100 && mouse[1] < 0) {
-
-
+                            Game.isMultiplayer = false;
+                            singlePlayer = false;
+                            userName.takeingInput = true;
+                            flag[0] = 5;
                             playSound("Assets\\sound\\LetsGo.wav");
                         }
                         if (mouse[1] > -250 && mouse[1] < -150) {
-
+                            // Two Players Button Logic
+                            Game.isMultiplayer = true;
+                            nameStage = 0;
+                            userName.takeingInput = true;
+                            flag[0] = 5;
 
                             playSound("Assets\\sound\\LetsGo.wav");
                         }
