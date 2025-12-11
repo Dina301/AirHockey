@@ -28,6 +28,8 @@ import com.sun.opengl.util.GLUT;
 
         public Ball(int[] textures, int x, int y, Hand handRight, Hand handLeft, String[] playerName, Timer timer,
                     GL gl) {
+            super(textures[38], x, y, gl);//r
+            this.textures = textures;
             this.handRight = handRight;
             this.handLeft = handLeft;
             handRight.ball = this;
@@ -320,5 +322,5 @@ import com.sun.opengl.util.GLUT;
 
 
     }
-}
+
 
