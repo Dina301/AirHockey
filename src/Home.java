@@ -206,6 +206,61 @@ public class Home extends JFrame {
                     }
 
                 }
+                /*
+      ? flag[0] = 1 for 1 player button
+      ? flag[0] = 2 for 2 player button
+      ? flag[0] = 3 for How to play button
+      ? flag[0] = 4 for HighScores button
+     */
+
+    /*
+      first player =0;
+      second player=1;
+     */
+
+                else if (flag[0] == 1 || flag[0] == 2 || flag[0] == 3 || flag[0] == 4) {
+                    // back button
+                    if (mouse[0] > -600 && mouse[0] < -550 && mouse[1] > 250 && mouse[1] < 350) {
+                        flag[0] = 0;
+                        levels.levelChosen = 0;
+                        game.reset();
+                        singlePlayer = false;
+                        if (flag[0] == 4) highScores.getScores = false;
+                    }
+
+                    if (flag[0] == 1) { //single player
+                        if (mouse[1] < 0 && mouse[1] > -100) {
+                            if (mouse[0] > -430 && mouse[0] < -170) {
+                                levels.levelChosen = 1;
+                                game.setBot(levels.levelChosen);
+                                flag[0] = 2;
+                                game.start();
+
+                            }
+                            if (mouse[0] > -130 && mouse[0] < 130) {
+                                levels.levelChosen = 2;
+                                game.setBot(levels.levelChosen);
+                                flag[0] = 2;
+                                game.start();
+                            }
+                            if (mouse[0] > 170 && mouse[0] < 430) {
+                                levels.levelChosen = 3;
+                                game.setBot(levels.levelChosen);
+                                flag[0] = 2;
+                                game.start();
+                            }
+
+                        }
+                    }
+
+                    if (flag[0] == 1) {
+                        game.setBot(levels.levelChosen);
+                        if (mouse[0] > -50 && mouse[0] < 50 && mouse[1] > 250 && mouse[1] < 350) {
+                            game.reset();
+                        }
+                    }
+
+                }
             }
             @Override
             public void mouseReleased(MouseEvent e) {
