@@ -101,6 +101,9 @@ public class Home extends JFrame {
                 }
                 //
             }
+            private void drawBackGround() {//m
+                draw(40, 0, 0, 1200, 700);
+            }
             private void draw(int index, double x, double y, double width, double height) {
                 // draw the character
                 gl.glEnable(GL.GL_BLEND);
