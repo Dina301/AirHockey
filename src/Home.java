@@ -28,9 +28,31 @@ public class Home extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        class HomeEventListener implements GLEventListener, MouseMotionListener, MouseListener, KeyListener {
 
-            public HomeEventListener(Clip clip) {
-                this.clip = clip;
-            }
-        }
+        getContentPane().add(glcanvas, BorderLayout.CENTER);//m
+
+        Animator animator = new FPSAnimator(60);
+        animator.add(glcanvas);
+        animator.start();
+
+        setTitle("Hokey Game");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1000, 600);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setFocusable(true);
+        glcanvas.requestFocus();
+
+        // Play background music or sound effect
+        // clip.start();
+    }
+}
+
+class HomeEventListener implements GLEventListener, MouseMotionListener, MouseListener, KeyListener {
+
+    final static String ASSETS_PATH = "Assets\\Sprites";
+    final static String[] textureNames = new File(ASSETS_PATH).list();
+    final TextureReader.Texture texture[] = new TextureReader.Texture[textureNames.length];
+    final int textures[] = new int[textureNames.length];
+    final int orthoX = 600, orthoY = 350;
+    int windowWidth = 2 * orthoX, windowHight = 2 * orthoY, flag[] = { 0 };
