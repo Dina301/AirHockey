@@ -19,6 +19,13 @@ public class Game {
     public Hand handRight, handLeft;
     Timer timer;
     public Ball ball;
+
+
+    public static String player1 = "";
+    public static String player2 = "";
+    public static boolean isMultiplayer = false;
+
+
     public Game(GL gl, int[] textures, int[] mouse, boolean[] mouseClicked, String[] playerName, BitSet keyBits) {
         this.gl = gl;
         this.textures = textures;
@@ -36,7 +43,7 @@ public class Game {
     public void draw() {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         drawBackground();
-
+        handleKeyPress();
         timer.add();
         timer.draw();
         ball.draw();
@@ -55,9 +62,22 @@ public class Game {
             }
 
         }
+
+        if(isMultiplayer) {
+            drawText(player1,-540,230);
+            drawText(player2,480,230);
+        }
+
         draw(57, -575, 325, 50, 50);
     }
 
+    public void drawText(String text, int x, int y) {
+        GLUT glut = new GLUT();
+        gl.glRasterPos2f(x, y);
+        for (int i = 0; i < text.length(); i++) {
+            glut.glutBitmapCharacter(GLUT.BITMAP_HELVETICA_18, text.charAt(i));
+        }
+    }
     public boolean isMouseOnRight(int mouseX, int mouseY) {
         return mouseX > handRight.x - 50 && mouseX < handRight.x + 50 &&
                 mouseY > handRight.y - 50 && mouseY < handRight.y + 50;
@@ -92,6 +112,43 @@ public class Game {
 
         gl.glDisable(GL.GL_BLEND);
     }
+
+
+    public boolean isKeyPressed(final int keyCode) {
+        return keyBits.get(keyCode);
+    }
+
+    public void handleKeyPress() {
+
+        if (isKeyPressed(KeyEvent.VK_LEFT)) {
+            handRight.move(-10, 0);
+        }
+        if (isKeyPressed(KeyEvent.VK_RIGHT)) {
+            handRight.move(10, 0);
+        }
+        if (isKeyPressed(KeyEvent.VK_UP)) {
+            handRight.move(0, 10);
+        }
+        if (isKeyPressed(KeyEvent.VK_DOWN)) {
+            handRight.move(0, -10);
+        }
+        if (!handLeft.AI){
+            if (isKeyPressed(KeyEvent.VK_A) ) {
+                handLeft.move(-10, 0);
+            }
+            if (isKeyPressed(KeyEvent.VK_D)) {
+                handLeft.move(10, 0);
+            }
+            if (isKeyPressed(KeyEvent.VK_W)) {
+                handLeft.move(0, 10);
+            }
+            if (isKeyPressed(KeyEvent.VK_S)) {
+                handLeft.move(0, -10);
+            }
+        }
+
+    }
+
     public void reset() {
         timer.reset();
         handLeft.reset();
@@ -102,6 +159,13 @@ public class Game {
     public void start() {
         ball.move = true;
         timer.start();
+    }
+
+    public void startTwoPlayers(String p1, String p2) {
+        this.player1 = p1;
+        this.player2 = p2;
+        ball.player1=p1;
+        ball.player2=p2;
     }
 
 }

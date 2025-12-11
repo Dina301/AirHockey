@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="JOGLwin">
+    <CLASSES>
+      <root url="file://E:/JOGLwin" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://E:/JOGLwin" />
+    </NATIVE>
+    <SOURCES />
+    <jarDirectory url="file://E:/JOGLwin" recursive="false" />
+  </library>
+</component>

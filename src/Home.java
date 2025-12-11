@@ -5,6 +5,7 @@ import GameObjects.Ball;
 import Pages.Game;
 import Pages.HighScores;
 import Pages.HowToPlay;
+import Pages.UserName;
 import com.sun.opengl.util.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -13,6 +14,8 @@ import Texture.TextureReader;
 
 // java packages
 import java.io.*;
+import java.util.ArrayList;
+import java.util.BitSet;
 import javax.sound.sampled.*;
 
 // our own packages
@@ -63,17 +66,27 @@ public class Home extends JFrame {
     final TextureReader.Texture texture[] = new TextureReader.Texture[textureNames.length];
     final int textures[] = new int[textureNames.length];
     final int orthoX = 600, orthoY = 350;
-    int windowWidth = 2 * orthoX, windowHight = 2 * orthoY, flag[] = {0};
-     boolean singlePlayer = false;
+
+
+
+            int windowWidth = 2 * orthoX, windowHight = 2 * orthoY, flag[] = { 0 };
+            int nameStage=0;
+            String[] twoplayerNameInput = { "","" };
+            boolean singlePlayer = false;
+
+
 
             GL gl; // global gl drawable to use in the class
             int[] mouse = new int[2]; // tracking mouse position
-            boolean[] mouseClicked = { false }; // tracking mouseClicked
+            boolean[] mouseClicked = { false };
+            BitSet keyBits = new BitSet(256); // tracking keyPressing
+            ArrayList<Integer> input = new ArrayList<>(7); // tracking key inputs for user name
+            String[] playerNameInput = { "" };// tracking mouseClicked
             Levels levels;
             Game game;
             HighScores highScores;
             HowToPlay howToPlay;
-
+            UserName userName;
             Clip clip;
 
             public HomeEventListener(Clip clip) {
@@ -268,7 +281,7 @@ public class Home extends JFrame {
                                 // play again
                                 game.reset();
                                 game.ball.tieWindowVisible = false;
-                                // فعّل نفس مستوى البوت تاني لو حتاج
+
 
                                 if (singlePlayer) {
                                     game.setBot(levels.levelChosen);
@@ -276,7 +289,7 @@ public class Home extends JFrame {
                                     game.handLeft.AI = false;
                                     game.handRight.AI = false;
                                 }
-                                // لا تستدعي setBot هنا، علشان ما تفعّليش الـ AI في المالتي بلاير
+
                                 game.start();
                                 return;
                             }
@@ -340,6 +353,66 @@ public class Home extends JFrame {
                 windowHight = e.getComponent().getHeight();
                 windowWidth = e.getComponent().getWidth();
             }
+
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                int ch = e.getKeyChar();
+                int backSpaceCode = 8;
+
+                if (ch >= 'a' && ch <= 'z' && input.size() <= 6) {
+                    if (userName.takeingInput)
+                        input.add(ch - 'a' + 10);
+                } else if (ch == backSpaceCode && input.size() > 0) {
+                    if (userName.takeingInput) {
+                        input.remove(input.size() - 1);
+                    }
+                }
+
+                if (ch == '\n') {
+                    if (input.size() == 0) return;
+                    String result ="";
+                    for (int i = 0; i < input.size(); i++) {
+                        result += (char) (input.get(i) + 'a' - 10);
+                    }
+                    input.clear();
+                    if (flag[0] == 5) {
+
+                        if (Game.isMultiplayer) {
+                            if (nameStage == 0) {
+                                twoplayerNameInput[0] = result;
+                                nameStage = 1;
+                                userName.takeingInput = true;
+                            } else if (nameStage == 1) {
+                                twoplayerNameInput[1] = result;
+                                nameStage = 0;
+                                userName.takeingInput = false;
+                                flag[0] = 2;
+                                game.startTwoPlayers(twoplayerNameInput[0], twoplayerNameInput[1]);
+                                game.start();
+                            }
+                        } else {
+                            playerNameInput[0] = result;
+                            userName.takeingInput = false;
+                            singlePlayer = true;
+                            flag[0] = 1;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int key = e.getKeyCode();
+                keyBits.set(key);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int key = e.getKeyCode();
+                keyBits.clear(key);
+            }
+
             private double convertX(double x) {
                 return x * (2 * orthoX) / windowWidth - orthoX;
             }
