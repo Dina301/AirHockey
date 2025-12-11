@@ -110,13 +110,14 @@ import com.sun.opengl.util.GLUT;
                         dy = 0;
                         dx = 0;
                         handLeft.score++;
+                        playerscore+=100;
                     } else if (x < 0) {
                         x = -90;
                         y = 0;
                         dy = 0;
                         dx = 0;
                         handRight.score++;
-                        playerscore+=100;
+
                     }
 
                 }
@@ -203,7 +204,6 @@ import com.sun.opengl.util.GLUT;
             if (distance(this, handRight) <= 7000)
                 flag = true;
         }
-
         public void checkWinner() {
 
             final int TIME_LIMIT = 30;
@@ -275,7 +275,8 @@ import com.sun.opengl.util.GLUT;
                 in.close();
 
                 // update the high scores to the new player
-                int score = playerscore;
+                // اللاعب على اليمين → handRight
+                int score = handRight.score * 100;   // أو استخدمي playerscore لو متأكدة إنه مظبوط
                 str += playerName[0] + " " + score;
                 PrintWriter print = new PrintWriter(file);
                 print.print(str);
@@ -288,6 +289,7 @@ import com.sun.opengl.util.GLUT;
 
 
         }
+
         public void drawText(String text, int x, int y) {
             GLUT glut = new GLUT();
             gl.glRasterPos2f(x, y);
