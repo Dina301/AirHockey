@@ -69,6 +69,38 @@ public class Home extends JFrame {
             public HomeEventListener(Clip clip) {
                 this.clip = clip;
             }
+            @Override
+            public void init(GLAutoDrawable arg0) {
+                this.gl = arg0.getGL(); // set the gl drawable
+                gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // This Will Clear The Background Color To Black
+                gl.glOrtho(-orthoX, orthoX, -orthoY, orthoY, -1, 1); // setting the orth and the coordinates of the window
+
+                // set textures
+                gl.glEnable(GL.GL_TEXTURE_2D); // Enable Texture Mapping
+                gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+                gl.glGenTextures(textureNames.length, textures, 0);
+
+                for (int i = 0; i < textureNames.length; i++) {
+                    try {
+                        texture[i] = TextureReader
+                                .readTexture(ASSETS_PATH + "\\" + textureNames[i], true);
+                        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[i]);
+
+                        // mipmapsFromPNG(gl, new GLU(), texture[i]);
+                        new GLU().gluBuild2DMipmaps(
+                                GL.GL_TEXTURE_2D,
+                                GL.GL_RGBA, // Internal Texel Format,
+                                texture[i].getWidth(), texture[i].getHeight(),
+                                GL.GL_RGBA, // External format from image,
+                                GL.GL_UNSIGNED_BYTE,
+                                texture[i].getPixels() // Imagedata
+                        );
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                //
+            }
             private void draw(int index, double x, double y, double width, double height) {
                 // draw the character
                 gl.glEnable(GL.GL_BLEND);
@@ -204,4 +236,67 @@ public class Home extends JFrame {
             private double convertY(double y) {
                 return orthoY - ((2f * orthoY) / windowHight * y);
             }
-        }
+
+            private void transfer() {
+                if (flag[0] == 0) {
+                    // main window page (base case)
+                    drawBackGround();
+                    drawHome();
+                } else if (flag[0] == 1) {
+                    // single player
+                    levels.draw();
+                } else if (flag[0] == 2) {
+                    // 2 player
+                    game.draw();
+                } else if (flag[0] == 3) {
+                    // how to play page
+                    howToPlay.draw();
+                } else if (flag[0] == 4) {
+                    // highScores page
+                    highScores.printScores();
+                } else if (flag[0] == 5) {
+                    userName.printInput();
+                }
+            }
+
+            private void draw(int index, double x, double y) {
+                draw(index, x, y, 260, 100);
+            }
+
+            private void drawHome() {
+                draw(41, -260, -50);
+
+                draw(42, -260, -200);
+
+                draw(43, 260, -50);
+
+                draw(44, 260, -200);
+
+                // exit button
+                draw(56, -550, 300, 50, 50);
+                // music button
+                if (clip.isActive()) {
+                    draw(59, 550, 300, 50, 50);
+                } else {
+                    draw(60, 550, 300, 50, 50);
+                }
+
+                if (mouse[0] > -390 && mouse[0] < -130) {
+                    if (mouse[1] > -100 && mouse[1] < 0) {
+                        draw(46, -260, -50);
+                    }
+                    if (mouse[1] > -250 && mouse[1] < -150) {
+                        draw(47, -260, -200);
+                    }
+                }
+                else if (mouse[0] > 130 && mouse[0] < 390) {
+                    if (mouse[1] > -100 && mouse[1] < 0) {
+                        draw(48, 260, -50);
+                    }
+                    if (mouse[1] > -250 && mouse[1] < -150) {
+                        draw(49, 260, -200);
+                    }
+                }
+
+            }
+}
