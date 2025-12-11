@@ -79,4 +79,16 @@ public class Game {
 
         gl.glDisable(GL.GL_BLEND);
     }
+    public void reset() {
+        timer.reset();
+        handLeft.reset();
+        handRight.reset();
+        ball.reset();
+    }
+
+    public void start() {
+        ball.move = true;
+        timer.start();
+    }
+
 }
