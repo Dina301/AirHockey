@@ -64,6 +64,7 @@ public class Home extends JFrame {
     final int textures[] = new int[textureNames.length];
     final int orthoX = 600, orthoY = 350;
     int windowWidth = 2 * orthoX, windowHight = 2 * orthoY, flag[] = {0};
+     boolean singlePlayer = false;
 
             GL gl; // global gl drawable to use in the class
             int[] mouse = new int[2]; // tracking mouse position
@@ -205,18 +206,17 @@ public class Home extends JFrame {
                         }
                     }
 
-                }
                 /*
-      ? flag[0] = 1 for 1 player button
-      ? flag[0] = 2 for 2 player button
-      ? flag[0] = 3 for How to play button
-      ? flag[0] = 4 for HighScores button
-     */
+                    ? flag[0] = 1 for 1 player button
+                     ? flag[0] = 2 for 2 player button
+                     ? flag[0] = 3 for How to play button
+                      ? flag[0] = 4 for HighScores button
+                */
 
-    /*
-      first player =0;
-      second player=1;
-     */
+                /*
+                  first player =0;
+                  second player=1;
+                 */
 
                 else if (flag[0] == 1 || flag[0] == 2 || flag[0] == 3 || flag[0] == 4) {
                     // back button
@@ -258,6 +258,43 @@ public class Home extends JFrame {
                         if (mouse[0] > -50 && mouse[0] < 50 && mouse[1] > 250 && mouse[1] < 350) {
                             game.reset();
                         }
+                    }
+
+                        if (flag[0] == 2 && game.ball.tieWindowVisible) {
+
+                            if (mouse[0] > -100 && mouse[0] < 100 &&
+                                    mouse[1] > -20 && mouse[1] < 40) {
+
+                                // play again
+                                game.reset();
+                                game.ball.tieWindowVisible = false;
+                                // فعّل نفس مستوى البوت تاني لو حتاج
+
+                                if (singlePlayer) {
+                                    game.setBot(levels.levelChosen);
+                                } else {
+                                    game.handLeft.AI = false;
+                                    game.handRight.AI = false;
+                                }
+                                // لا تستدعي setBot هنا، علشان ما تفعّليش الـ AI في المالتي بلاير
+                                game.start();
+                                return;
+                            }
+
+                            if (mouse[0] > -100 && mouse[0] < 100 &&
+                                    mouse[1] > -100 && mouse[1] < -40) {
+
+                                // back
+                                game.ball.tieWindowVisible = false;
+                                flag[0] = 0;
+                                levels.levelChosen = 0;
+                                game.reset();
+                                return;
+                            }
+
+                            return;
+                        }
+
                     }
 
                 }
