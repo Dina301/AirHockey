@@ -1,5 +1,10 @@
 import javax.media.opengl.*;
 import javax.swing.*;
+
+import GameObjects.Ball;
+import Pages.Game;
+import Pages.HighScores;
+import Pages.HowToPlay;
 import com.sun.opengl.util.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -63,6 +68,11 @@ public class Home extends JFrame {
             GL gl; // global gl drawable to use in the class
             int[] mouse = new int[2]; // tracking mouse position
             boolean[] mouseClicked = { false }; // tracking mouseClicked
+            Levels levels;
+            Game game;
+            HighScores highScores;
+            HowToPlay howToPlay;
+
             Clip clip;
 
             public HomeEventListener(Clip clip) {

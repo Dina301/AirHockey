@@ -19,7 +19,7 @@ import com.sun.opengl.util.GLUT;
         int[] textures;
         int[] levels = {5, 5, 7, 9};
         public boolean tieWindowVisible;
-        /*---->*/public int playerscore = 0;
+        public int playerscore = 0;
         public String player1;
         public String player2;
 
@@ -199,6 +199,11 @@ import com.sun.opengl.util.GLUT;
             }
 
         }
+        public void checkCollapse() {
+            if (distance(this, handRight) <= 7000)
+                flag = true;
+        }
+
         public void checkWinner() {//b
 
             final int TIME_LIMIT = 10; // 60 ثانية
