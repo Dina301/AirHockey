@@ -25,52 +25,6 @@ public class Levels {
         this.flag = flag;
     }
 
-    public void draw() {
-        if (levelChosen == 0) {
-            drawLevels();
-        }
-        else {
-            flag[0] = 5;
-        }
-    }
-
-    private void drawLevels() {
-        gl.glClear(GL.GL_COLOR_BUFFER_BIT);
-        drawBackGround();
-
-        // easy button
-        draw(50, -300, -50, 260, 100);
-
-        // medium button
-        draw(51, 0, -50, 260, 100);
-
-        //  button
-        draw(52, 300, -50, 260, 100);
-
-        // handle hover mouse
-        if (mouse[1] < 0 && mouse[1] > -100) {
-            if (mouse[0] > -430 && mouse[0] < -170) {
-                draw(53, -300, -50, 260, 100);
-            }
-            if (mouse[0] > -130 && mouse[0] < 130) {
-                draw(54, 0, -50, 260, 100);
-            }
-            if (mouse[0] > 170 && mouse[0] < 430) {
-                draw(55, 300, -50, 260, 100);
-            }
-        }
-
-        // back button
-        draw(57, -575, 325, 50, 50);
-    }
-
-    private void draw(int index, double x, double y) {
-        int width = 40;
-        if (index == 1) width = 20;
-        else if (index == 18) width = 10;
-        draw(index, x, y, width, 40);
-    }
-
     private void drawBackGround() {
         draw(40, 0, 0, 1200, 700);
     }
