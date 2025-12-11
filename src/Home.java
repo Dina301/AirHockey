@@ -5,6 +5,7 @@ import GameObjects.Ball;
 import Pages.Game;
 import Pages.HighScores;
 import Pages.HowToPlay;
+import Pages.Levels;
 import Pages.UserName;
 import com.sun.opengl.util.*;
 import java.awt.*;
@@ -119,6 +120,16 @@ public class Home extends JFrame {
                                 texture[i].getPixels() // Imagedata
                         );
                     } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    // initialize the value of the objects
+                    try {
+                        howToPlay = new HowToPlay(textures, 36, gl);
+                        highScores = new HighScores(gl, textures);
+                        game = new Game(gl, textures, mouse, mouseClicked, playerNameInput, keyBits);
+                        userName = new UserName(gl, input, textures);
+                        levels = new Levels(textures, mouse, flag, userName, game, gl);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
