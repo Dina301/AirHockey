@@ -16,25 +16,10 @@ public class HowToPlay {
 
     public void draw() {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
-        draw(40, 0, 0, 1200, 700);
+        draw(68, 0, 0, 1200, 700);
 
-        gl.glColor3f(1, 1, 1);
-        gl.glBegin(GL.GL_QUADS);
-        gl.glVertex2d(-230, 310);
-        gl.glVertex2d(230, 310);
-        gl.glVertex2d(230, 250);
-        gl.glVertex2d(-230, 250);
-        gl.glEnd();
+        draw(43, 0, 270, 500, 120);
 
-        String heading = "how to play";
-        for (int i = 0, y = 280, x = -200; i < heading.length(); i++) {
-            char ch = heading.charAt(i);
-            if (ch != ' ') {
-                draw(ch - 'a' + 10, x, y);
-            }
-
-            x += 40;
-        }
 
         draw(36, 0, -50, 1100, 520);
         // back button
