@@ -22,7 +22,7 @@ public class Hand extends GameObjects{
             if (this.x > 530) this.x = 530;
         }
         else{
-            if (x > 0) x = 0;
+            if (x > 0) this.x = 0;
             if (this.x < -530) this.x = -530;
         }
 
@@ -39,7 +39,7 @@ public class Hand extends GameObjects{
             if (this.x > 530) this.x = 530;
         }
         else{
-            if (x > 0) x = 0;
+            if (x > 0) this.x = 0;
             if (this.x < -530) this.x = -530;
         }
 
