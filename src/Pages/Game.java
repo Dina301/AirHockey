@@ -19,10 +19,20 @@ public class Game {
     public Hand handRight, handLeft;
     Timer timer;
     public Ball ball;
-    public void setBot(int level) {
-        handLeft.level = level;
-        handLeft.AI = true;
+    public Game(GL gl, int[] textures, int[] mouse, boolean[] mouseClicked, String[] playerName, BitSet keyBits) {
+        this.gl = gl;
+        this.textures = textures;
+        this.keyBits = keyBits;
+        this.mouse = mouse;
+        this.mouseClicked = mouseClicked;
+        handRight = new Hand(textures[39], 440, 0, true, textures, gl);
+        handLeft = new Hand(textures[39], -440, 0, false, textures, gl);
+        timer = new Timer(60, textures, gl);
+        ball = new Ball(textures, 0, 0, handRight, handLeft, playerName, timer, gl);
+
     }
+
+
     public void draw() {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         drawBackground();
@@ -61,7 +71,10 @@ public class Game {
     public void drawBackground() {
         draw(37, 0, 0, 1200, 700);
     }
-
+    public void setBot(int level) {
+        handLeft.level = level;
+        handLeft.AI = true;
+    }
     public void draw(int index, double x, double y, double width, double height) {
         gl.glEnable(GL.GL_BLEND);
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]); // Turn Blending On
