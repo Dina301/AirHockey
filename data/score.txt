@@ -1,6 +1,2 @@
-basmala 0
 basmala 100
-basmala 0
-basmala 0
 shahd 0
-gbfg 100
