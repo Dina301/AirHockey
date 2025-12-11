@@ -125,8 +125,6 @@ public class Home extends JFrame {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }
-                    // initialize the value of the objects
                     try {
                         howToPlay = new HowToPlay(textures, 36, gl);
                         highScores = new HighScores(gl, textures);
@@ -137,6 +135,8 @@ public class Home extends JFrame {
                         e.printStackTrace();
                     }
                 }
+                // initialize the value of the objects}
+            }
                 //
               @Override
             public void display(GLAutoDrawable arg0) {//m
@@ -212,8 +212,7 @@ public class Home extends JFrame {
 
                             playSound("Assets\\sound\\LetsGo.wav");
                         }
-                    }
-                    else if (mouse[0] > 130 && mouse[0] < 390) {
+                    } else if (mouse[0] > 130 && mouse[0] < 390) {
                         if (mouse[1] > -100 && mouse[1] < 0) {
                             flag[0] = 3;
                             playSound("Assets\\sound\\letsGo.wav");
@@ -228,7 +227,7 @@ public class Home extends JFrame {
                         // Music toggle button
                         if (mouse[0] > 525 && mouse[0] < 575) {
                             // control music when click (music toggle)
-                            if(clip.isActive()){
+                            if (clip.isActive()) {
                                 clip.stop();
                             } else {
                                 clip.start();
@@ -239,6 +238,7 @@ public class Home extends JFrame {
                             System.exit(0);
                         }
                     }
+                }
 
                 /*
                     ? flag[0] = 1 for 1 player button
@@ -332,7 +332,7 @@ public class Home extends JFrame {
                     }
 
                 }
-            }
+
             @Override
             public void mouseReleased(MouseEvent e) {
                 windowHight = e.getComponent().getHeight();
