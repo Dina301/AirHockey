@@ -92,6 +92,9 @@ public class Home extends JFrame {
 
             public HomeEventListener(Clip clip) {
                 this.clip = clip;
+                for (int i = 0; i < textureNames.length; i++) {
+                    System.out.println(i + " -> " + textureNames[i]);
+                }
             }
             @Override
             public void init(GLAutoDrawable arg0) {
