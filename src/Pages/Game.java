@@ -19,7 +19,10 @@ public class Game {
     public Hand handRight, handLeft;
     Timer timer;
     public Ball ball;
-
+    public void setBot(int level) {
+        handLeft.level = level;
+        handLeft.AI = true;
+    }
     public void draw() {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         drawBackground();
