@@ -28,6 +28,14 @@ public class Home extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        HomeEventListener listener = new HomeEventListener(clip);
+        GLCanvas glcanvas = new GLCanvas();
+        glcanvas.addKeyListener(listener);
+        glcanvas.addGLEventListener(listener);
+        glcanvas.addMouseListener(listener);
+        glcanvas.addMouseMotionListener(listener);
+    }
+}
         class HomeEventListener implements GLEventListener, MouseMotionListener, MouseListener, KeyListener {
 
             public HomeEventListener(Clip clip) {
