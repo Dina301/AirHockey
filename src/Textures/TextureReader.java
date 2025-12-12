@@ -1,4 +1,4 @@
-package Texture;
+package Textures;
 
 import com.sun.opengl.util.BufferUtil;
 import javax.imageio.ImageIO;
