@@ -11,7 +11,7 @@ import com.sun.opengl.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.media.opengl.glu.GLU;
-import Texture.TextureReader;
+import Textures.TextureReader;
 
 // java packages
 import java.io.*;
@@ -125,6 +125,7 @@ public class Home extends JFrame {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                }
                     // initialize the value of the objects
                     try {
                         howToPlay = new HowToPlay(textures, 36, gl);
@@ -137,7 +138,7 @@ public class Home extends JFrame {
                     }
                 }
                 //
-            }  @Override
+              @Override
             public void display(GLAutoDrawable arg0) {//m
                 // Clear the screen
                 gl.glClear(GL.GL_COLOR_BUFFER_BIT);

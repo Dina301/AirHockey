@@ -4,7 +4,7 @@ import Pages.Timer;
 
 import javax.media.opengl.GL;
 
-import Pages.Timer;
+
 import com.sun.opengl.util.GLUT;
     import javax.media.opengl .*;
     import java.io .*;
